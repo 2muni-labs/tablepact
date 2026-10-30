@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling>=1.26,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tablepact"
+version = "0.1.0"
+description = "Minimal Databricks table publishing contracts"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["PyYAML>=6.0.2,<7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "build>=1.2,<2"]
+
+[tool.hatch.build.targets.wheel]
+include = ["/*.py", "/_internal/**", "/py.typed"]
+dev-mode-dirs = [".."]
+
+[tool.hatch.build.targets.wheel.sources]
+"" = "tablepact"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
